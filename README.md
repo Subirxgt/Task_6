@@ -1,35 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SQL Data Analysis - Task 6</title>
-</head>
-<body>
+<h2 style="font-size: 2.5em; color: #e74c3c; text-align: center; margin: 30px 0;">📊 Sales Trend Analysis Using Aggregations 🍕</h2>
 
-<h1 style="color: #4A90E2; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #E6F0FA; padding: 15px; border-radius: 10px;">
-    Task 6: SQL for Data Analysis
-</h1>
-
-<h2 style="color: #2C3E50; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">🎯 Objective</h2>
-<p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #34495E;">
-    Use SQL queries to analyze monthly sales performance, including revenue and order volume using a sales dataset.
+<p style="font-size: 1.2em; line-height: 1.8; color: #2c3e50; margin: 20px;">
+  This analysis explores the monthly <strong style='color:#e67e22;'>revenue</strong> and <strong style='color:#3498db;'>order volume</strong> for a pizza sales dataset during the year <strong>2015</strong> 🍕.
 </p>
 
-<h2 style="color: #2C3E50; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">🛠 Tools</h2>
-<ul style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #2D3436; list-style-type: circle; padding-left: 20px;">
-    <li style="color: #1ABC9C;">MySQL</li>
-</ul>
+<h3 style="color: #8e44ad; font-size: 1.8em; margin-top: 30px;">🛠️ Tools Used</h3>
+<p style="font-size: 1.2em; color: #2c3e50; margin-left: 20px;">
+  • MySQL for querying data<br>
+  • SQL Aggregation functions: <code>SUM()</code>, <code>COUNT()</code>, <code>GROUP BY</code><br>
+  • Date functions like <code>STR_TO_DATE()</code>, <code>DATE_FORMAT()</code>
+</p>
 
-<h2 style="color: #2C3E50; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">📦 Deliverables</h2>
-<ul style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #2D3436; list-style-type: square; padding-left: 20px;">
-    <li>SQL query files (.sql)</li>
-    <li>Screenshots of query outputs (named as numbers)</li>
-</ul>
+<h3 style="color: #8e44ad; font-size: 1.8em; margin-top: 30px;">📦 Dataset</h3>
+<p style="font-size: 1.2em; color: #2c3e50; margin-left: 20px;">
+  The dataset <strong>sales</strong> includes fields like:<br>
+  <code>date</code>, <code>Transaction Id</code>, <code>Total Revenue</code>
+</p>
 
-<h2 style="color: #2C3E50; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">📈 Highlight Task</h2>
-<div style="background-color: #EAF2F8; border-left: 6px solid #3498DB; padding: 15px; margin: 10px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-    <p>This query retrieves the top 5 months with the highest revenue from the <strong>sales</strong> table and shows both revenue and order volume along with the real month name (e.g., June 2023):</p>
-    <pre style="background-color: #FBFCFC; border: 1px solid #D5D8DC; padding: 10px; overflow-x: auto;">
+<h3 style="color: #8e44ad; font-size: 1.8em; margin-top: 30px;">🧮 SQL Query</h3>
+<pre style="background-color: #ecf0f1; padding: 15px; border-left: 6px solid #3498db; font-size: 1.1em; margin: 20px;">
 SELECT 
   DATE_FORMAT(STR_TO_DATE(date, '%Y-%m-%d'), '%M %Y') AS month_year,
   SUM(`Total Revenue`) AS total_revenue,
@@ -38,18 +27,48 @@ FROM sales
 GROUP BY month_year
 ORDER BY total_revenue DESC
 LIMIT 5;
-    </pre>
-</div>
+</pre>
 
-<h2 style="color: #2C3E50; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">🧠 SQL Concepts Used</h2>
-<ul style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #2D3436; list-style-type: disc; padding-left: 20px;">
-    <li><code style="background-color: #D6EAF8; padding: 2px 4px;">SELECT</code> and <code style="background-color: #D5F5E3; padding: 2px 4px;">GROUP BY</code> to aggregate monthly revenue</li>
-    <li><code style="background-color: #FADBD8; padding: 2px 4px;">COUNT(DISTINCT ...)</code> for unique order volume</li>
-    <li><code style="background-color: #F6DDCC; padding: 2px 4px;">SUM()</code> to calculate monthly total revenue</li>
-    <li><code style="background-color: #FCF3CF; padding: 2px 4px;">ORDER BY</code> to sort results by revenue</li>
-    <li><code style="background-color: #E8DAEF; padding: 2px 4px;">LIMIT</code> to show top 5 months</li>
-    <li><code style="background-color: #E6E6FA; padding: 2px 4px;">DATE_FORMAT</code> to show real month and year</li>
-</ul>
+<h3 style="color: #8e44ad; font-size: 1.8em; margin-top: 30px;">📈 Results Table</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 1.1em;">
+  <thead style="background-color: #3498db; color: white;">
+    <tr>
+      <th style="padding: 12px; border: 1px solid #ddd;">📅 Month-Year</th>
+      <th style="padding: 12px; border: 1px solid #ddd;">💰 Total Revenue</th>
+      <th style="padding: 12px; border: 1px solid #ddd;">🛒 Order Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #f9f9f9;">
+      <td style="padding: 12px; border: 1px solid #ddd;">January 2024 </td>
+      <td style="padding: 12px; border: 1px solid #ddd;">$14,548.00</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">31</td>
+    </tr>
+    <tr>
+      <td style="padding: 12px; border: 1px solid #ddd;">March 2024</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">$12,849.00</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">31</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="padding: 12px; border: 1px solid #ddd;">April 2024</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">$12,541.00</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">30</td>
+    </tr>
+    <tr>
+      <td style="padding: 12px; border: 1px solid #ddd;">February 2024</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">$10,803.00</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">29</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="padding: 12px; border: 1px solid #ddd;">May 2024</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">$8,455.00</td>
+      <td style="padding: 12px; border: 1px solid #ddd;">31</td>
+    </tr>
+  </tbody>
+</table>
 
-</body>
-</html>
+<h3 style="color: #8e44ad; font-size: 1.8em; margin-top: 30px;">📌 Conclusion</h3>
+<p style="font-size: 1.2em; color: #2c3e50; margin-left: 20px;">
+  ✅ Successfully identified the top 5 months based on revenue.<br>
+  📈 Helps businesses understand peak sales periods and optimize their strategy.
+</p>
